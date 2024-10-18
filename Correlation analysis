@@ -1,0 +1,36 @@
+import math 
+import statistics  
+x=[] 
+y=[] 
+ 
+n= int(input("Enter number of elements: ")) 
+ 
+print("Enter elements for x and y: ") 
+for i in range(0,n): 
+    element= int(input("x:")) 
+    x.append(element) 
+ 
+    element= int(input("y:")) 
+    y.append(element) 
+   
+ 
+xy= [x[i]*y[i] for i in range(0,n)] 
+ 
+xMean = statistics.mean(x) 
+yMean = statistics.mean(y) 
+ 
+xStdev = statistics.pstdev(x) 
+yStdev = statistics.pstdev(y) 
+ 
+xy = [x[i]*y[i] for i in range(0,n)] 
+ 
+r = (sum(xy)-(n*xMean*yMean))/(n*xStdev*yStdev) 
+ 
+print('Correlation Coefficient: ' + str(r)) 
+ 
+if(r > 0): 
+    print("Positive Correlation") 
+elif(r < 0): 
+    print("Negative Correlation") 
+else: 
+    print("No correlation") 
