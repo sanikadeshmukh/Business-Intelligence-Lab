@@ -1,0 +1,54 @@
+# Load a CSV file
+def load_csv(filename):
+  dataset = list()
+  with open(filename, 'r') as file:
+    csv_reader = reader (file)
+    for row in csv_reader:
+      if not row:
+        continue
+      dataset.append(row)
+  return dataset
+# Convert string column to int- class label
+def str_column_to_int (dataset, column): 
+  class_values = [row[column] for row in dataset] unique set (class_values)
+  lookup= dict()
+  for i, value in enumerate(unique):
+    lookup [value] = i
+    print('[%s] => %d" % (value, i))
+  for row in dataset:
+    row[column] lookup [row[column]]
+return lookup
+# Split the dataset by class values, returns a dictionary
+def separate_by_class(dataset):
+  separated = dict()
+  for i in range(len(dataset)):
+    vector = dataset[i]
+    class_value = vector [-1]
+    if (class value not in separated): separated[class_value] = list() separated [class_value].append(vector) return separated
+  return separated
+def model (separate, dataset, row):
+  prob = dict()
+  for key in separate: 
+    prob[key] = 1
+    for i in range(len(row)):
+      temp = separate [key] 
+      count = 0
+      for j in temp:
+        if (row[i]==j[i]):
+        count += 1
+      prob[key] = count/len (separate [key])
+#print (prob)
+  for i in prob:
+    prob[i] len(separate[i])/len(dataset)
+#print (prob)
+  return prob
+def predict(prob):
+  max_prob = max(prob, key = prob.get) 
+  print ("classified to: ", max_prob)
+filename = input("enter file url") dataset = load_csv(filename)
+#convert class column to integers
+str_column_to_int (dataset, len(dataset[0])-1)
+separated separate_by_class (dataset)
+row= input("enter tuple seperated by, :").split(",")
+prob = model (separated, dataset, row)
+predict(prob)
