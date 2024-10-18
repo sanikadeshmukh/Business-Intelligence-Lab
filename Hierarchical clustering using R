@@ -1,0 +1,23 @@
+install.packages("tidyverse")    
+install.packages("cluster")     
+install.packages("factoextra") 
+library(tidyverse)               
+library(cluster)    
+library(factoextra)            
+data <- input <- read.csv("C:\\Users\\admin\\Desktop\\DMBI R\\iris.csv") 
+#data <- USArrests 
+data <- na.omit(data) 
+head(data) 
+head(data) 
+distmatrix <- dist(data, method = "euclidean") 
+hc1 <- hclust(distmatrix, method = "single" ) 
+hc2 <- agnes(data, method = "single") 
+hc2$ac 
+plot(hc1, cex = 0.6, hang = -1) 
+pltree(hc2, cex = 0.6, hang = -1) 
+hc3 <- diana(data) 
+hc3$dc 
+pltree(hc3, cex = 0.6, hang = -1) 
+sub_grp <- cutree(hc1, k = 4) 
+rect.hclust(hc1, k = 10) 
+fviz_cluster(list(data = data, cluster = sub_grp)) 
